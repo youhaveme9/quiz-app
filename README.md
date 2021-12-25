@@ -1,6 +1,6 @@
-# first_app1
+# Quiz App
 
-A new Flutter project.
+A basic flutter quiz app.
 
 ## Getting Started
 
