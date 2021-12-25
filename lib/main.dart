@@ -1,6 +1,6 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors
-
 import 'package:flutter/material.dart';
+import './question.dart';
 
 void main() {
   runApp(MyApp());
@@ -11,29 +11,29 @@ class MyApp extends StatefulWidget {
   // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
     // TODO: implement createState
-    return MyAppState();
+    return _MyAppState();
   }
 }
 
-class MyAppState extends State<MyApp> {
-  var questionIndex = 0;
+class _MyAppState extends State<MyApp> {
+  var _questionIndex = 0;
   void answerQuestion1() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
     print('Answer 1');
   }
 
   void answerQuestion2() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
     print('Answer 2');
   }
 
   void answerQuestion3() {
     setState(() {
-      questionIndex += 1;
+      _questionIndex += 1;
     });
     print('Answer 3');
   }
@@ -48,6 +48,7 @@ class MyAppState extends State<MyApp> {
 
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.blue.shade200,
         appBar: AppBar(
           title: Text('Test App'),
           backgroundColor: Colors.pink.shade700,
@@ -55,7 +56,7 @@ class MyAppState extends State<MyApp> {
         body: Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
-            Text(questions[questionIndex]),
+            Question(questions[_questionIndex]),
             ElevatedButton(
               child: Text('Answer 1'),
               onPressed: answerQuestion1,
