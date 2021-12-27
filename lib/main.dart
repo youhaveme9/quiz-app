@@ -1,6 +1,6 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors
 import 'package:flutter/material.dart';
 import './question.dart';
+import './Answer.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,65 +10,50 @@ class MyApp extends StatefulWidget {
   @override
   // ignore: no_logic_in_create_state
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _MyAppState();
   }
 }
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
-  void answerQuestion1() {
+  void _answerQuestion() {
     setState(() {
       _questionIndex += 1;
     });
-    print('Answer 1');
-  }
-
-  void answerQuestion2() {
-    setState(() {
-      _questionIndex += 1;
-    });
-    print('Answer 2');
-  }
-
-  void answerQuestion3() {
-    setState(() {
-      _questionIndex += 1;
-    });
-    print('Answer 3');
   }
 
   @override
   Widget build(BuildContext context) {
     var questions = [
-      'What\'s your favourite animal?',
-      'Whts\'s your favourite color?',
-      'What\'s your favourite city?',
+      {
+        'questionText': 'What\'s your favourite animal?',
+        'answerText': ['cat', 'dogs', 'elephant', 'sheeps']
+      },
+      {
+        'questionText': 'Whts\'s your favourite color?',
+        'answerText': ['Red', 'Orange', 'Blue', 'Pink']
+      },
+      {
+        'questionText': 'What\'s your favourite city?',
+        'answerText': ['Patna', 'Agra', 'Kolkata', 'Delhi']
+      }
     ];
 
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.blue.shade200,
         appBar: AppBar(
-          title: Text('Test App'),
+          title: const Text('Personality Quiz'),
           backgroundColor: Colors.pink.shade700,
         ),
         body: Column(
           // ignore: prefer_const_literals_to_create_immutables
           children: <Widget>[
-            Question(questions[_questionIndex]),
-            ElevatedButton(
-              child: Text('Answer 1'),
-              onPressed: answerQuestion1,
-            ),
-            ElevatedButton(
-              child: Text('Answer 2'),
-              onPressed: answerQuestion2,
-            ),
-            ElevatedButton(
-              child: Text('Answer 3'),
-              onPressed: answerQuestion3,
-            ),
+            Question(questions[_questionIndex]['questionText'] as String),
+            ...(questions[_questionIndex]['answerText'] as List<String>)
+                .map((answer) {
+              return Answer(_answerQuestion, answer);
+            }).toList()
           ],
         ),
       ),
